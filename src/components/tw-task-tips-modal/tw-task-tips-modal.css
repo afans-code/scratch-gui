@@ -1,0 +1,136 @@
+.modalOverlay {
+    position: absolute;
+    top: 80px; /* 距离顶部导航栏留出一点空间 */
+    left: 25%; /* 默认居中偏左 */
+    z-index: 500; /* 层级高于积木区和舞台区 */
+    width: 480px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+    overflow: hidden;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    transition: box-shadow 0.2s;
+}
+
+.modalOverlay:active {
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.25);
+}
+
+.header {
+    background: #4ADE80; /* 匹配图片中的绿色 */
+    color: white;
+    padding: 12px 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: grab; /* 提示可拖拽 */
+    user-select: none;
+}
+
+.header:active {
+    cursor: grabbing;
+}
+
+.headerLeft {
+    display: flex;
+    align-items: center;
+    font-size: 1.1rem;
+    font-weight: bold;
+    gap: 8px;
+    letter-spacing: 0.5px;
+}
+
+.headerRight {
+    display: flex;
+    gap: 10px;
+}
+
+.headerBtn {
+    background: rgba(255, 255, 255, 0.25);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: white;
+    padding: 4px 12px;
+    border-radius: 16px;
+    font-size: 0.85rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    transition: background 0.2s;
+}
+
+.headerBtn:hover {
+    background: rgba(255, 255, 255, 0.4);
+}
+
+.body {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+/* 折叠状态下隐藏主体内容 */
+.collapsed .body {
+    display: none;
+}
+
+.textRow {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    font-size: 1.05rem;
+    color: #333;
+    line-height: 1.6;
+}
+
+.speakerBtn {
+    background: #FBBF24; /* 匹配图片中的明黄色 */
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    flex-shrink: 0;
+    color: white;
+    box-shadow: 0 2px 8px rgba(251, 191, 36, 0.4);
+    transition: transform 0.1s, background 0.2s;
+}
+
+.speakerBtn:hover {
+    background: #F59E0B;
+    transform: scale(1.05);
+}
+
+.speakerBtn:active {
+    transform: scale(0.95);
+}
+
+.imageContainer {
+    width: 100%;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid #E5E7EB;
+    background-color: #F3F4F6;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.imageContainer img {
+    width: 100%;
+    display: block;
+}
+
+.imagePlaceholder {
+    width: 100%;
+    height: 240px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #9CA3AF;
+    font-size: 0.9rem;
+}

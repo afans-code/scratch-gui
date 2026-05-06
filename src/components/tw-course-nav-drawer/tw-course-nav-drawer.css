@@ -1,0 +1,169 @@
+.backdrop {
+    position: fixed;
+    top: 3.375rem; /* 匹配导航栏的高度 */
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.1); /* 轻微暗化背景 */
+    z-index: 999; /* 悬浮于主要内容之上，低于导航栏和抽屉本身 */
+}
+
+.drawerOverlay {
+    position: fixed;
+    top: 3.375rem;
+    right: -340px; /* 默认隐藏在屏幕外 */
+    width: 320px;
+    height: calc(100vh - 3.375rem);
+    background: white;
+    box-shadow: -4px 0 24px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    transition: right 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    flex-direction: column;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.drawerOverlay.visible {
+    right: 0; /* 滑出显示 */
+}
+
+.header {
+    padding: 16px 20px;
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: #374151;
+    border-bottom: 1px solid #F3F4F6;
+    background: white;
+    z-index: 2;
+}
+
+.scrollContainer {
+    flex: 1;
+    overflow-y: auto;
+    padding: 24px 20px;
+    position: relative;
+    scrollbar-width: thin; /* 给 Firefox 用细滚动条 */
+}
+
+.scrollContainer::-webkit-scrollbar {
+    width: 6px;
+}
+.scrollContainer::-webkit-scrollbar-thumb {
+    background: #D1D5DB;
+    border-radius: 3px;
+}
+
+.courseItem {
+    display: flex;
+    align-items: stretch;
+    min-height: 54px;
+    margin-bottom: 16px;
+}
+
+.timelineCol {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-right: 16px;
+    width: 24px;
+}
+
+.iconWrapper {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    flex-shrink: 0;
+    z-index: 2;
+    background: white;
+}
+
+.iconWrapper.completed {
+    background: #22C55E; /* 绿色勾勾 */
+}
+
+.iconWrapper.current {
+    background: #F97316; /* 橙色当前节 */
+    box-shadow: 0 0 0 3px #FFEDD5; /* 增加光晕效果 */
+}
+
+.iconWrapper.pending {
+    background: #E5E7EB; /* 灰色未开始 */
+}
+
+.line {
+    flex: 1;
+    width: 2px;
+    background: #E5E7EB;
+    margin-top: 4px;
+    margin-bottom: -20px; /* 让线向下延伸到下一个节点 */
+}
+
+/* 最后一个项目不显示连接线 */
+.courseItem:last-child .line {
+    display: none;
+}
+
+.contentCard {
+    flex: 1;
+    background: white;
+    border: 1px solid #E5E7EB;
+    border-radius: 24px; /* 圆角胶囊形状 */
+    padding: 10px 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.contentCard:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    border-color: #D1D5DB;
+    transform: translateY(-1px);
+}
+
+.activeCard {
+    border-color: #F97316;
+    box-shadow: 0 4px 12px rgba(249, 115, 22, 0.15);
+}
+
+.typeIcon {
+    width: 28px;
+    height: 28px;
+    background: #EEF2FF;
+    color: #6366F1;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.typeIcon.doc { background: #FFF7ED; color: #F59E0B; }
+.typeIcon.game { background: #E0F2FE; color: #0EA5E9; }
+
+.itemTitle {
+    font-size: 0.95rem;
+    color: #4B5563;
+    font-weight: 500;
+}
+
+.scrollDownHint {
+    text-align: center;
+    padding: 10px;
+    color: #F97316;
+    animation: bounce 1.5s infinite;
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(6px); }
+}

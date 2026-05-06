@@ -2,10 +2,10 @@ import classNames from 'classnames';
 import omit from 'lodash.omit';
 import PropTypes from 'prop-types';
 import React from 'react';
-import {defineMessages, FormattedMessage, injectIntl, intlShape} from 'react-intl';
-import {connect} from 'react-redux';
+import { defineMessages, FormattedMessage, injectIntl, intlShape } from 'react-intl';
+import { connect } from 'react-redux';
 import MediaQuery from 'react-responsive';
-import {Tab, Tabs, TabList, TabPanel} from 'react-tabs';
+import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import tabStyles from 'react-tabs/style/react-tabs.css';
 import VM from 'scratch-vm';
 
@@ -16,7 +16,9 @@ import SoundTab from '../../containers/sound-tab.jsx';
 import StageWrapper from '../../containers/stage-wrapper.jsx';
 import Loader from '../loader/loader.jsx';
 import Box from '../box/box.jsx';
-import MenuBar from '../menu-bar/menu-bar.jsx';
+import MenuBar from '../tw-custom-menu-bar/tw-custom-menu-bar.jsx';
+import TaskTipsModal from '../tw-task-tips-modal/tw-task-tips-modal.jsx';
+import CourseNavDrawer from '../tw-course-nav-drawer/tw-course-nav-drawer.jsx';
 import CostumeLibrary from '../../containers/costume-library.jsx';
 import BackdropLibrary from '../../containers/backdrop-library.jsx';
 import Watermark from '../../containers/watermark.jsx';
@@ -39,11 +41,11 @@ import TWUnknownPlatformModal from '../../containers/tw-unknown-platform-modal.j
 import TWInvalidProjectModal from '../../containers/tw-invalid-project-modal.jsx';
 import TWWindChimeSubmitter from '../../containers/tw-windchime-submitter.jsx';
 
-import {STAGE_SIZE_MODES, FIXED_WIDTH, UNCONSTRAINED_NON_STAGE_WIDTH} from '../../lib/layout-constants';
-import {resolveStageSize} from '../../lib/screen-utils';
-import {Theme} from '../../lib/themes';
+import { STAGE_SIZE_MODES, FIXED_WIDTH, UNCONSTRAINED_NON_STAGE_WIDTH } from '../../lib/layout-constants';
+import { resolveStageSize } from '../../lib/screen-utils';
+import { Theme } from '../../lib/themes';
 
-import {isRendererSupported, isBrowserSupported} from '../../lib/tw-environment-support-prober';
+import { isRendererSupported, isBrowserSupported } from '../../lib/tw-environment-support-prober';
 
 import styles from './gui.css';
 import addExtensionIcon from './icon--extensions.svg';
@@ -162,6 +164,9 @@ const GUIComponent = props => {
         vm,
         ...componentProps
     } = omit(props, 'dispatch');
+    const [isTaskTipsVisible, setIsTaskTipsVisible] = React.useState(false);
+    const [isCourseNavVisible, setIsCourseNavVisible] = React.useState(false);
+
     if (children) {
         return <Box {...componentProps}>{children}</Box>;
     }
@@ -326,6 +331,8 @@ const GUIComponent = props => {
                     onShare={onShare}
                     onStartSelectingFileUpload={onStartSelectingFileUpload}
                     onToggleLoginOpen={onToggleLoginOpen}
+                    onOpenTaskTips={() => setIsTaskTipsVisible(true)}
+                    onOpenCourseNav={() => setIsCourseNavVisible(!isCourseNavVisible)}
                 />
                 <Box className={styles.bodyWrapper}>
                     <Box className={styles.flexWrapper}>
@@ -429,9 +436,9 @@ const GUIComponent = props => {
                                     {soundsTabVisible ? <SoundTab vm={vm} /> : null}
                                 </TabPanel>
                             </Tabs>
-                            {backpackVisible ? (
+                            {/* {backpackVisible ? (
                                 <Backpack host={backpackHost} />
-                            ) : null}
+                            ) : null} */}
                         </Box>
 
                         <Box className={classNames(styles.stageAndTargetWrapper, styles[stageSize])}>
@@ -451,6 +458,8 @@ const GUIComponent = props => {
                         </Box>
                     </Box>
                 </Box>
+                <TaskTipsModal isVisible={isTaskTipsVisible} onClose={() => setIsTaskTipsVisible(false)} />
+                <CourseNavDrawer isVisible={isCourseNavVisible} onClose={() => setIsCourseNavVisible(false)} />
                 <DragLayer />
             </Box>
         );

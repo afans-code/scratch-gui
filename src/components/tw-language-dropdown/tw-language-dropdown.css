@@ -1,0 +1,81 @@
+.languageWrapper {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdownGroup {
+    display: flex;
+    align-items: center;
+    gap: 0.2rem;
+    padding: 6px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.2s;
+    color: white;
+}
+
+.dropdownGroup:hover, .dropdownGroup.active {
+    background: rgba(0, 0, 0, 0.2);
+}
+
+.dropdownMenu {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    margin-top: 10px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    padding: 8px 0;
+    min-width: 140px;
+    max-height: 400px;
+    overflow-y: auto;
+    z-index: 1000;
+}
+
+/* 带有三角箭头的气泡样式 (靠右侧) */
+.dropdownMenu::before {
+    content: '';
+    position: absolute;
+    top: -6px;
+    right: 20px;
+    border-width: 0 6px 6px 6px;
+    border-style: solid;
+    border-color: transparent transparent white transparent;
+}
+
+/* 优化滚动条体验 */
+.dropdownMenu::-webkit-scrollbar {
+    width: 6px;
+}
+.dropdownMenu::-webkit-scrollbar-track {
+    background: transparent;
+}
+.dropdownMenu::-webkit-scrollbar-thumb {
+    background: #dcdcdc;
+    border-radius: 3px;
+}
+.dropdownMenu::-webkit-scrollbar-thumb:hover {
+    background: #b0b0b0;
+}
+
+.menuItem {
+    padding: 10px 24px;
+    color: #555;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+    text-align: left;
+    white-space: nowrap;
+}
+
+.menuItem:hover {
+    background: #F3F4F6;
+    color: #4C97FF;
+}
+
+.menuItem.selected {
+    color: #4C97FF;
+    font-weight: bold;
+    background: #f4f8ff;
+}
