@@ -293,7 +293,7 @@ const GUIComponent = props => {
                         onRequestClose={onRequestCloseBackdropLibrary}
                     />
                 ) : null}
-                <MenuBar
+                {/* <MenuBar
                     accountNavOpen={accountNavOpen}
                     authorId={authorId}
                     authorThumbnailUrl={authorThumbnailUrl}
@@ -333,7 +333,7 @@ const GUIComponent = props => {
                     onToggleLoginOpen={onToggleLoginOpen}
                     onOpenTaskTips={() => setIsTaskTipsVisible(true)}
                     onOpenCourseNav={() => setIsCourseNavVisible(!isCourseNavVisible)}
-                />
+                /> */}
                 <Box className={styles.bodyWrapper}>
                     <Box className={styles.flexWrapper}>
                         <Box className={styles.editorWrapper}>
